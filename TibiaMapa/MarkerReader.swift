@@ -8,6 +8,7 @@ struct MapMarker: Identifiable {
     let icon: UInt64
     let text: String
     let source: String
+    var sourceTitle: String { L.text(source) }
 }
 
 /// Read-only protobuf wire decoder. Unknown fields are skipped, never rewritten.

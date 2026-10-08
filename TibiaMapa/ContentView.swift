@@ -20,6 +20,7 @@ struct ContentView: View {
     @StateObject private var installer = MapInstaller()
     @StateObject private var navigation = MapNavigation()
     @StateObject private var client = TibiaProcessMonitor()
+    @StateObject private var markerBrowser = MarkerBrowserState()
     @AppStorage("appLanguage") private var language = "system"
     @State private var page: AppPage? = .update
     @AppStorage(MapPreferenceKeys.style) private var style: MapStyle = .classicMarkers
@@ -41,7 +42,7 @@ struct ContentView: View {
                 }.listStyle(.sidebar).id(language)
                 VStack(alignment: .leading, spacing: 10) {
                     Text("🇧🇷 Proudly made in Brasil").font(.caption2).foregroundStyle(.secondary)
-                    Text("Marcio Barbato · 2.2").font(.caption2).foregroundStyle(.tertiary)
+                    Text("Marcio Barbato · 2.3").font(.caption2).foregroundStyle(.tertiary)
                 }.padding(18)
             }.navigationSplitViewColumnWidth(min: 200, ideal: 220, max: 260)
         } detail: {
@@ -52,10 +53,10 @@ struct ContentView: View {
                     else { accessPage }
                 case .markers:
                     if installer.hasFolderAccess {
-                        MarkerView(destination: installer.destination) { marker in
+                        MarkerView(destination: installer.destination, onOpenMap: { marker in
                             navigation.focus(marker)
                             page = .map
-                        }
+                        }, browser: markerBrowser)
                     } else { accessPage }
                 default:
                     ScrollView {
@@ -113,13 +114,26 @@ struct ContentView: View {
                     .font(.callout).foregroundStyle(preserveMarkers ? Color.secondary : Color.orange)
             }.panel().disabled(installer.isBusy)
             destinationCard
+            if !installer.hasFolderAccess {
+                VStack(alignment: .leading, spacing: 12) {
+                    Label(L.text("Permita o acesso para atualizar seus mapas"), systemImage: "folder.badge.plus")
+                        .font(.headline)
+                    Text(L.text("Para baixar e instalar os mapas, escolha a pasta Resources do Tibia, que contém minimap."))
+                        .foregroundStyle(.secondary)
+                    Button(L.text("Escolher pasta Resources…")) {
+                        chooseFolder(at: MapEngine.defaultDestination.deletingLastPathComponent())
+                    }.buttonStyle(.borderedProminent).controlSize(.large)
+                }.panel()
+            }
             HStack {
                 clientStatus
                 Spacer()
                 Button(L.text("Atualizar mapas…")) { client.refresh(); if !client.isRunning { confirm = true } }
                     .buttonStyle(.borderedProminent).controlSize(.large).disabled(installer.isBusy || !installer.hasFolderAccess || client.isRunning)
             }
-            statusCard
+            if installer.isBusy || installer.failed || !installer.status.isEmpty || !installer.hasFolderAccess {
+                statusCard
+            }
         }
     }
     private var clientStatus: some View {
@@ -136,7 +150,8 @@ struct ContentView: View {
                 Button(L.text("Padrão")) { chooseFolder(at: MapEngine.defaultDestination.deletingLastPathComponent()) }.disabled(installer.isBusy)
             }
             if !installer.hasFolderAccess {
-                Text(L.text("Autorize a pasta dos mapas antes de continuar.")).foregroundStyle(.secondary)
+                Text(L.text("Escolha Resources, a pasta que contém minimap, para habilitar a atualização."))
+                    .foregroundStyle(.orange)
             }
             if let error = installer.accessError { Text(error).font(.caption).foregroundStyle(.orange) }
             Text(installer.destination.path).font(.caption).foregroundStyle(.secondary).textSelection(.enabled).id(installer.destination)
@@ -146,8 +161,8 @@ struct ContentView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 if installer.isBusy { ProgressView().controlSize(.small) }
-                else { Image(systemName: installer.failed ? "exclamationmark.triangle.fill" : "checkmark.circle").foregroundStyle(installer.failed ? .orange : .teal) }
-                Text(L.text(installer.status)).font(.headline)
+                else { Image(systemName: installer.failed ? "exclamationmark.triangle.fill" : installer.hasFolderAccess ? "checkmark.circle" : "folder.badge.questionmark").foregroundStyle(installer.failed || !installer.hasFolderAccess ? .orange : .teal) }
+                Text(L.text(installer.hasFolderAccess ? installer.status : "Aguardando acesso à pasta Resources")).font(.headline)
             }
             if !installer.log.isEmpty { Text(installer.log).font(.caption.monospaced()).textSelection(.enabled) }
         }.panel()
@@ -187,7 +202,7 @@ struct ContentView: View {
                 Image(nsImage: NSApplication.shared.applicationIconImage).resizable().frame(width: 84, height: 84)
                 VStack(alignment: .leading, spacing: 7) {
                     Text("TibiaMapa").font(.title.bold())
-                    Text("2.2 · macOS").foregroundStyle(.secondary)
+                    Text("2.3 · macOS").foregroundStyle(.secondary)
                     Text("🇧🇷 Proudly made in Brasil").font(.callout)
                 }
             }.panel()

@@ -230,16 +230,42 @@ struct TibiaMapaTests {
     @Test func overlayDeduplicatesAndFiltersByFloorAndViewport() {
         let markers = [
             MapMarker(id: 1, x: 100, y: 100, z: 7, icon: 1, text: "Home", source: "Normal"),
-            MapMarker(id: 2, x: 100, y: 100, z: 7, icon: 1, text: "Home", source: "Private"),
+            MapMarker(id: 2, x: 100, y: 100, z: 7, icon: 1, text: "Home", source: "Privada"),
             MapMarker(id: 3, x: 100, y: 100, z: 7, icon: 1, text: "Different", source: "Normal"),
             MapMarker(id: 4, x: 100, y: 100, z: 8, icon: 1, text: "Above", source: "Normal"),
             MapMarker(id: 5, x: 65536, y: 100, z: 7, icon: 1, text: "Invalid", source: "Normal")
         ]
         let overlay = MarkerOverlay(markers: markers)
         #expect(overlay.count == 3)
+        #expect(overlay.count(for: .normal) == 3)
+        #expect(overlay.count(for: .privateMarkers) == 1)
+        #expect(overlay.count(for: .none) == 0)
         #expect(overlay.visible(in: CGRect(x: 90, y: 90, width: 20, height: 20), floor: 7).count == 2)
+        #expect(overlay.visible(in: CGRect(x: 90, y: 90, width: 20, height: 20), floor: 7, mode: .privateMarkers).map(\.source) == ["Privada"])
+        #expect(overlay.visible(in: CGRect(x: 90, y: 90, width: 20, height: 20), floor: 7, mode: .none).isEmpty)
         #expect(overlay.visible(in: CGRect(x: 90, y: 90, width: 20, height: 20), floor: 8).count == 1)
         #expect(overlay.visible(in: CGRect(x: 200, y: 200, width: 20, height: 20), floor: 7).isEmpty)
+    }
+
+    @Test @MainActor func markerBrowserCombinesSearchSourceAndNumericSort() {
+        let browser = MarkerBrowserState()
+        let markers = [
+            MapMarker(id: 0, x: 100, y: 1, z: 7, icon: 1, text: "Warzone", source: "Normal"),
+            MapMarker(id: 1, x: 20, y: 2, z: 8, icon: 2, text: "Warzone", source: "Privada"),
+            MapMarker(id: 2, x: 3, y: 3, z: 9, icon: 3, text: "Other", source: "Privada")
+        ]
+        browser.search = "warzone"
+        #expect(browser.results(from: markers).map(\.x) == [20, 100])
+        browser.origin = .privateMarkers
+        #expect(browser.results(from: markers).map(\.id) == [1])
+        browser.xFilter = "100"
+        #expect(browser.results(from: markers).isEmpty)
+        browser.origin = .all
+        #expect(browser.results(from: markers).map(\.id) == [0])
+        browser.resetFilters()
+        #expect(browser.results(from: markers).map(\.x) == [3, 20, 100])
+        browser.sortOrder = [KeyPathComparator(\.x, order: .reverse)]
+        #expect(browser.results(from: markers).map(\.x) == [100, 20, 3])
     }
 
     @Test @MainActor func allTibiaMarkerIconsLoadInCorrectOrder() {

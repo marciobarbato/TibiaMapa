@@ -538,5 +538,49 @@
   "%d de %d marcações. Andar 0 = superfície.": [
     "%d of %d markers. Floor 0 = surface.",
     "%d z %d znaczników. Poziom 0 = powierzchnia."
+  ],
+  "Todas": [
+    "All",
+    "Wszystkie"
+  ],
+  "Originais do jogo": [
+    "Game originals",
+    "Oryginalne z gry"
+  ],
+  "Privadas": [
+    "Private",
+    "Prywatne"
+  ],
+  "Nenhuma": [
+    "None",
+    "Żadne"
+  ],
+  "Filtros de coluna": [
+    "Column filters",
+    "Filtry kolumn"
+  ],
+  "Limpar filtros": [
+    "Clear filters",
+    "Wyczyść filtry"
+  ],
+  "Permita o acesso para atualizar seus mapas": [
+    "Grant access to update your maps",
+    "Zezwól na dostęp, aby zaktualizować mapy"
+  ],
+  "Para baixar e instalar os mapas, escolha a pasta Resources do Tibia, que contém minimap.": [
+    "To download and install maps, choose Tibia’s Resources folder, which contains minimap.",
+    "Aby pobrać i zainstalować mapy, wybierz folder Resources Tibii zawierający minimap."
+  ],
+  "Escolher pasta Resources…": [
+    "Choose Resources folder…",
+    "Wybierz folder Resources…"
+  ],
+  "Escolha Resources, a pasta que contém minimap, para habilitar a atualização.": [
+    "Choose Resources, the folder containing minimap, to enable updates.",
+    "Wybierz Resources, folder zawierający minimap, aby włączyć aktualizacje."
+  ],
+  "Aguardando acesso à pasta Resources": [
+    "Waiting for access to the Resources folder",
+    "Oczekiwanie na dostęp do folderu Resources"
   ]
 }

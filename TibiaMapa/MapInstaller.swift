@@ -23,7 +23,7 @@ enum MapStyle: String, CaseIterable, Identifiable {
 @MainActor
 final class MapInstaller: ObservableObject {
     @Published var isBusy = false
-    @Published var status = "Pronto para atualizar"
+    @Published var status = ""
     @Published var log = ""
     @Published var failed = false
     @Published var lastBackup: URL?

@@ -1,20 +1,52 @@
 import SwiftUI
 
+@MainActor
+final class MarkerBrowserState: ObservableObject {
+    @Published var search = ""
+    @Published var origin = MarkerDisplayMode.all
+    @Published var descriptionFilter = ""
+    @Published var xFilter = ""
+    @Published var yFilter = ""
+    @Published var floorFilter = ""
+    @Published var iconFilter = ""
+    @Published var selection: Set<Int> = []
+    @Published var sortOrder: [KeyPathComparator<MapMarker>] = [KeyPathComparator(\.x)]
+
+    var hasColumnFilters: Bool {
+        !descriptionFilter.isEmpty || !xFilter.isEmpty || !yFilter.isEmpty ||
+        !floorFilter.isEmpty || !iconFilter.isEmpty
+    }
+    func resetFilters() {
+        search = ""; origin = .all
+        descriptionFilter = ""; xFilter = ""; yFilter = ""
+        floorFilter = ""; iconFilter = ""
+    }
+    func results(from markers: [MapMarker]) -> [MapMarker] {
+        markers.filter { marker in
+            origin.includes(marker) &&
+            (search.isEmpty || "\(marker.text) \(marker.x) \(marker.y) \(MapFloor.label(for: Int(marker.z))) \(L.text(marker.source))".localizedCaseInsensitiveContains(search)) &&
+            (descriptionFilter.isEmpty || marker.text.localizedCaseInsensitiveContains(descriptionFilter)) &&
+            (xFilter.isEmpty || String(marker.x).contains(xFilter)) &&
+            (yFilter.isEmpty || String(marker.y).contains(yFilter)) &&
+            (floorFilter.isEmpty || MapFloor.label(for: Int(marker.z)).contains(floorFilter)) &&
+            (iconFilter.isEmpty || String(marker.icon).contains(iconFilter))
+        }.sorted(using: sortOrder)
+    }
+}
+
 struct MarkerView: View {
     let destination: URL
     let onOpenMap: (MapMarker) -> Void
+    @ObservedObject var browser: MarkerBrowserState
     @AppStorage("appLanguage") private var language = "system"
     @State private var markers: [MapMarker] = []
-    @State private var selection: Set<Int> = []
-    @State private var search = ""
     @State private var error: String?
     @State private var loading = true
-    var filtered: [MapMarker] {
-        guard !search.isEmpty else { return markers }
-        return markers.filter { "\($0.text) \($0.x) \($0.y) \(MapFloor.label(for: Int($0.z))) \(L.text($0.source))".localizedCaseInsensitiveContains(search) }
-    }
+    @State private var filtersOpen = false
+
     var body: some View {
         let _ = language
+        let filtered = browser.results(from: markers)
         VStack(alignment: .leading, spacing: 16) {
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
@@ -22,20 +54,42 @@ struct MarkerView: View {
                     Text(L.text("Somente leitura · dê dois cliques para ir até a marcação")).foregroundStyle(.secondary)
                 }
                 Spacer()
-                Button(L.text("Abrir no mapa")) { open(selection) }
-                    .disabled(selection.count != 1).buttonStyle(.borderedProminent)
+                Button(L.text("Abrir no mapa")) { open(browser.selection) }
+                    .disabled(browser.selection.count != 1).buttonStyle(.borderedProminent)
             }
-            TextField(L.text("Buscar descrição, coordenada ou origem"), text: $search)
-                .textFieldStyle(.roundedBorder)
+            HStack {
+                TextField(L.text("Buscar descrição, coordenada ou origem"), text: $browser.search)
+                    .textFieldStyle(.roundedBorder)
+                Picker(L.text("Origem"), selection: $browser.origin) {
+                    ForEach([MarkerDisplayMode.all, .normal, .privateMarkers]) { mode in
+                        Text(mode.title).tag(mode)
+                    }
+                }.frame(width: 210)
+                Button {
+                    filtersOpen.toggle()
+                } label: {
+                    Label(L.text("Filtros de coluna"), systemImage: browser.hasColumnFilters ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
+                }.popover(isPresented: $filtersOpen) {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text(L.text("Filtros de coluna")).font(.headline)
+                        TextField(L.text("Descrição"), text: $browser.descriptionFilter)
+                        TextField("X", text: $browser.xFilter)
+                        TextField("Y", text: $browser.yFilter)
+                        TextField(L.text("Andar"), text: $browser.floorFilter)
+                        TextField(L.text("Ícone"), text: $browser.iconFilter)
+                        Button(L.text("Limpar filtros")) { browser.resetFilters() }
+                    }.textFieldStyle(.roundedBorder).padding(18).frame(width: 260)
+                }
+            }
             if loading { ProgressView(L.text("Lendo arquivos…")) }
             if let error { Text(error).foregroundStyle(.orange).textSelection(.enabled) }
-            Table(filtered, selection: $selection) {
+            Table(filtered, selection: $browser.selection, sortOrder: $browser.sortOrder) {
                 TableColumn(L.text("Descrição"), value: \.text).width(min: 160)
-                TableColumn("X") { Text(String($0.x)) }.width(60)
-                TableColumn("Y") { Text(String($0.y)) }.width(60)
-                TableColumn(L.text("Andar")) { Text(MapFloor.label(for: Int($0.z))) }.width(55)
-                TableColumn(L.text("Ícone")) { MarkerIconView(id: $0.icon) }.width(45)
-                TableColumn(L.text("Origem")) { Text(L.text($0.source)) }.width(75)
+                TableColumn("X", value: \.x) { Text(String($0.x)) }.width(60)
+                TableColumn("Y", value: \.y) { Text(String($0.y)) }.width(60)
+                TableColumn(L.text("Andar"), value: \.z) { Text(MapFloor.label(for: Int($0.z))) }.width(55)
+                TableColumn(L.text("Ícone"), value: \.icon) { MarkerIconView(id: $0.icon) }.width(45)
+                TableColumn(L.text("Origem"), value: \.sourceTitle) { Text($0.sourceTitle) }.width(95)
             }
             .contextMenu(forSelectionType: Int.self) { ids in
                 Button(L.text("Abrir no mapa")) { open(ids) }.disabled(ids.count != 1)
@@ -59,5 +113,4 @@ struct MarkerView: View {
         guard ids.count == 1, let id = ids.first, let marker = markers.first(where: { $0.id == id }) else { return }
         onOpenMap(marker)
     }
-
 }
