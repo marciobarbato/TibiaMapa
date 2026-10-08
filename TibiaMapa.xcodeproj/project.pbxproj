@@ -1,0 +1,594 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D5EBDF542E78768A00C41FEB /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = D5EBDF532E78768A00C41FEB /* ZIPFoundation */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D5EBDF2A2E78708F00C41FEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5EBDF132E78708F00C41FEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5EBDF1A2E78708F00C41FEB;
+			remoteInfo = TibiaMapa;
+		};
+		D5EBDF342E78708F00C41FEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5EBDF132E78708F00C41FEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5EBDF1A2E78708F00C41FEB;
+			remoteInfo = TibiaMapa;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D5EBDF1B2E78708F00C41FEB /* TibiaMapa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TibiaMapa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5EBDF292E78708F00C41FEB /* TibiaMapaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TibiaMapaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5EBDF332E78708F00C41FEB /* TibiaMapaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TibiaMapaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D5EBDF1D2E78708F00C41FEB /* TibiaMapa */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TibiaMapa;
+			sourceTree = "<group>";
+		};
+		D5EBDF2C2E78708F00C41FEB /* TibiaMapaTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TibiaMapaTests;
+			sourceTree = "<group>";
+		};
+		D5EBDF362E78708F00C41FEB /* TibiaMapaUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TibiaMapaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D5EBDF182E78708F00C41FEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5EBDF542E78768A00C41FEB /* ZIPFoundation in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EBDF262E78708F00C41FEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EBDF302E78708F00C41FEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D5EBDF122E78708F00C41FEB = {
+			isa = PBXGroup;
+			children = (
+				D5EBDF1D2E78708F00C41FEB /* TibiaMapa */,
+				D5EBDF2C2E78708F00C41FEB /* TibiaMapaTests */,
+				D5EBDF362E78708F00C41FEB /* TibiaMapaUITests */,
+				D5EBDF1C2E78708F00C41FEB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D5EBDF1C2E78708F00C41FEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5EBDF1B2E78708F00C41FEB /* TibiaMapa.app */,
+				D5EBDF292E78708F00C41FEB /* TibiaMapaTests.xctest */,
+				D5EBDF332E78708F00C41FEB /* TibiaMapaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D5EBDF1A2E78708F00C41FEB /* TibiaMapa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5EBDF3D2E78708F00C41FEB /* Build configuration list for PBXNativeTarget "TibiaMapa" */;
+			buildPhases = (
+				D5EBDF172E78708F00C41FEB /* Sources */,
+				D5EBDF182E78708F00C41FEB /* Frameworks */,
+				D5EBDF192E78708F00C41FEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D5EBDF1D2E78708F00C41FEB /* TibiaMapa */,
+			);
+			name = TibiaMapa;
+			packageProductDependencies = (
+				D5EBDF532E78768A00C41FEB /* ZIPFoundation */,
+			);
+			productName = TibiaMapa;
+			productReference = D5EBDF1B2E78708F00C41FEB /* TibiaMapa.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D5EBDF282E78708F00C41FEB /* TibiaMapaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5EBDF402E78708F00C41FEB /* Build configuration list for PBXNativeTarget "TibiaMapaTests" */;
+			buildPhases = (
+				D5EBDF252E78708F00C41FEB /* Sources */,
+				D5EBDF262E78708F00C41FEB /* Frameworks */,
+				D5EBDF272E78708F00C41FEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5EBDF2B2E78708F00C41FEB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D5EBDF2C2E78708F00C41FEB /* TibiaMapaTests */,
+			);
+			name = TibiaMapaTests;
+			packageProductDependencies = (
+			);
+			productName = TibiaMapaTests;
+			productReference = D5EBDF292E78708F00C41FEB /* TibiaMapaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D5EBDF322E78708F00C41FEB /* TibiaMapaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5EBDF432E78708F00C41FEB /* Build configuration list for PBXNativeTarget "TibiaMapaUITests" */;
+			buildPhases = (
+				D5EBDF2F2E78708F00C41FEB /* Sources */,
+				D5EBDF302E78708F00C41FEB /* Frameworks */,
+				D5EBDF312E78708F00C41FEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5EBDF352E78708F00C41FEB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D5EBDF362E78708F00C41FEB /* TibiaMapaUITests */,
+			);
+			name = TibiaMapaUITests;
+			packageProductDependencies = (
+			);
+			productName = TibiaMapaUITests;
+			productReference = D5EBDF332E78708F00C41FEB /* TibiaMapaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D5EBDF132E78708F00C41FEB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					D5EBDF1A2E78708F00C41FEB = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					D5EBDF282E78708F00C41FEB = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = D5EBDF1A2E78708F00C41FEB;
+					};
+					D5EBDF322E78708F00C41FEB = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = D5EBDF1A2E78708F00C41FEB;
+					};
+				};
+			};
+			buildConfigurationList = D5EBDF162E78708F00C41FEB /* Build configuration list for PBXProject "TibiaMapa" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D5EBDF122E78708F00C41FEB;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D5EBDF502E78758B00C41FEB /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D5EBDF1C2E78708F00C41FEB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D5EBDF1A2E78708F00C41FEB /* TibiaMapa */,
+				D5EBDF282E78708F00C41FEB /* TibiaMapaTests */,
+				D5EBDF322E78708F00C41FEB /* TibiaMapaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D5EBDF192E78708F00C41FEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EBDF272E78708F00C41FEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EBDF312E78708F00C41FEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D5EBDF172E78708F00C41FEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EBDF252E78708F00C41FEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EBDF2F2E78708F00C41FEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5EBDF2B2E78708F00C41FEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5EBDF1A2E78708F00C41FEB /* TibiaMapa */;
+			targetProxy = D5EBDF2A2E78708F00C41FEB /* PBXContainerItemProxy */;
+		};
+		D5EBDF352E78708F00C41FEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5EBDF1A2E78708F00C41FEB /* TibiaMapa */;
+			targetProxy = D5EBDF342E78708F00C41FEB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D5EBDF3B2E78708F00C41FEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D5EBDF3C2E78708F00C41FEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		D5EBDF3E2E78708F00C41FEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TibiaMapa/TibiaMapa.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 9;
+				DEVELOPMENT_TEAM = TF3GU6U7H8;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Marcio Barbato. Tibia: CipSoft GmbH. Maps: TibiaMaps.io.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 2.2;
+				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapa;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D5EBDF3F2E78708F00C41FEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TibiaMapa/TibiaMapa.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 9;
+				DEVELOPMENT_TEAM = TF3GU6U7H8;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Marcio Barbato. Tibia: CipSoft GmbH. Maps: TibiaMaps.io.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 2.2;
+				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapa;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		D5EBDF412E78708F00C41FEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.2;
+				DEVELOPMENT_TEAM = TF3GU6U7H8;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TibiaMapa.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TibiaMapa";
+			};
+			name = Debug;
+		};
+		D5EBDF422E78708F00C41FEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.2;
+				DEVELOPMENT_TEAM = TF3GU6U7H8;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TibiaMapa.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TibiaMapa";
+			};
+			name = Release;
+		};
+		D5EBDF442E78708F00C41FEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 2.2;
+				DEVELOPMENT_TEAM = TF3GU6U7H8;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = TibiaMapa;
+			};
+			name = Debug;
+		};
+		D5EBDF452E78708F00C41FEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 2.2;
+				DEVELOPMENT_TEAM = TF3GU6U7H8;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = TibiaMapa;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D5EBDF162E78708F00C41FEB /* Build configuration list for PBXProject "TibiaMapa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5EBDF3B2E78708F00C41FEB /* Debug */,
+				D5EBDF3C2E78708F00C41FEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5EBDF3D2E78708F00C41FEB /* Build configuration list for PBXNativeTarget "TibiaMapa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5EBDF3E2E78708F00C41FEB /* Debug */,
+				D5EBDF3F2E78708F00C41FEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5EBDF402E78708F00C41FEB /* Build configuration list for PBXNativeTarget "TibiaMapaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5EBDF412E78708F00C41FEB /* Debug */,
+				D5EBDF422E78708F00C41FEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5EBDF432E78708F00C41FEB /* Build configuration list for PBXNativeTarget "TibiaMapaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5EBDF442E78708F00C41FEB /* Debug */,
+				D5EBDF452E78708F00C41FEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D5EBDF502E78758B00C41FEB /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.19;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D5EBDF532E78768A00C41FEB /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5EBDF502E78758B00C41FEB /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = D5EBDF132E78708F00C41FEB /* Project object */;
+}

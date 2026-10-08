@@ -1,0 +1,20 @@
+# Xcode local state
+.DS_Store
+xcuserdata/
+*.xcuserstate
+
+# Build products and signing material
+DerivedData/
+build/
+*.xcarchive
+*.ipa
+*.dmg
+*.pkg
+*.p8
+*.p12
+*.mobileprovision
+
+# Private project notes
+APP-STORE-2.2.txt
+LEIA-ME.txt
+MELHORIAS-FUTURAS.md

@@ -1,0 +1,542 @@
+{
+  "Idioma do Mac": [
+    "Mac language",
+    "Język Maca"
+  ],
+  "Idioma": [
+    "Language",
+    "Język"
+  ],
+  "Explore mais. Mantenha suas marcações.": [
+    "Explore more. Keep your markers.",
+    "Odkrywaj więcej. Zachowaj swoje znaczniki."
+  ],
+  "Seus mapas": [
+    "Your maps",
+    "Twoje mapy"
+  ],
+  "Estilo do mapa": [
+    "Map style",
+    "Wariant mapy"
+  ],
+  "Preservar minhas marcações": [
+    "Preserve my markers",
+    "Zachowaj moje znaczniki"
+  ],
+  "Fazer backup antes de alterar os mapas": [
+    "Back up before changing maps",
+    "Utwórz kopię zapasową przed zmianą map"
+  ],
+  "Suas marcações têm prioridade. Marcadores do pacote só são adicionados se você ainda não tiver um arquivo de marcações.": [
+    "Your markers take priority. Package markers are only added if you do not already have a marker file.",
+    "Twoje znaczniki mają pierwszeństwo. Znaczniki z pakietu są dodawane tylko wtedy, gdy plik znaczników jeszcze nie istnieje."
+  ],
+  "As marcações atuais, inclusive privadas, serão substituídas pelas do pacote. Um mapa sem marcadores deixará você sem marcações.": [
+    "Current markers, including private markers, will be replaced by the package markers. A package without markers will remove your markers.",
+    "Bieżące znaczniki, także prywatne, zostaną zastąpione znacznikami z pakietu. Pakiet bez znaczników usunie Twoje znaczniki."
+  ],
+  "Pasta do minimapa": [
+    "Minimap folder",
+    "Folder minimapy"
+  ],
+  "Escolher…": [
+    "Choose…",
+    "Wybierz…"
+  ],
+  "Padrão": [
+    "Default",
+    "Domyślny"
+  ],
+  "Feche o Tibia e o launcher antes de continuar.": [
+    "Close Tibia and its launcher before continuing.",
+    "Zamknij Tibię i jej program uruchamiający, zanim przejdziesz dalej."
+  ],
+  "Atualizar mapas…": [
+    "Update maps…",
+    "Zaktualizuj mapy…"
+  ],
+  "Ver marcações": [
+    "View markers",
+    "Zobacz znaczniki"
+  ],
+  "Restaurar backup…": [
+    "Restore backup…",
+    "Przywróć kopię…"
+  ],
+  "Abrir backups": [
+    "Open backups",
+    "Otwórz kopie zapasowe"
+  ],
+  "Explorar mapa": [
+    "Explore map",
+    "Przeglądaj mapę"
+  ],
+  "Mapas por TibiaMaps.io ↗": [
+    "Maps by TibiaMaps.io ↗",
+    "Mapy od TibiaMaps.io ↗"
+  ],
+  "Aplicativo independente, sem afiliação com TibiaMaps.io ou CipSoft.": [
+    "Independent app, not affiliated with TibiaMaps.io or CipSoft.",
+    "Niezależna aplikacja, niepowiązana z TibiaMaps.io ani CipSoft."
+  ],
+  "Atualizar os mapas?": [
+    "Update the maps?",
+    "Zaktualizować mapy?"
+  ],
+  "Atualizar mapas": [
+    "Update maps",
+    "Zaktualizuj mapy"
+  ],
+  "Cancelar": [
+    "Cancel",
+    "Anuluj"
+  ],
+  "Suas marcações serão mantidas. ": [
+    "Your markers will be kept. ",
+    "Twoje znaczniki zostaną zachowane. "
+  ],
+  "Suas marcações atuais serão removidas e substituídas pelas do pacote, quando houver. ": [
+    "Your current markers will be removed and replaced by package markers, if any. ",
+    "Twoje bieżące znaczniki zostaną usunięte i zastąpione znacznikami z pakietu, jeśli są dostępne. "
+  ],
+  "Um backup completo será criado.": [
+    "A full backup will be created.",
+    "Zostanie utworzona pełna kopia zapasowa."
+  ],
+  "Backup desativado: não será possível desfazer esta operação pelo aplicativo.": [
+    "Backup disabled: this operation cannot be undone in the app.",
+    "Kopia zapasowa jest wyłączona: tej operacji nie będzie można cofnąć w aplikacji."
+  ],
+  "Restaurar este backup?": [
+    "Restore this backup?",
+    "Przywrócić tę kopię?"
+  ],
+  "Restaurar mapas e marcações": [
+    "Restore maps and markers",
+    "Przywróć mapy i znaczniki"
+  ],
+  "O estado atual será salvo em outro backup.": [
+    "The current state will be saved in another backup.",
+    "Bieżący stan zostanie zapisany w osobnej kopii zapasowej."
+  ],
+  "Sem backup do estado atual. Esta troca não poderá ser desfeita pelo app.": [
+    "No backup of the current state. This replacement cannot be undone in the app.",
+    "Bez kopii bieżącego stanu. Tej zmiany nie będzie można cofnąć w aplikacji."
+  ],
+  "Todos os mapas e marcações atuais serão substituídos pelo backup selecionado: %@. ": [
+    "All current maps and markers will be replaced by the selected backup: %@. ",
+    "Wszystkie bieżące mapy i znaczniki zostaną zastąpione wybraną kopią: %@. "
+  ],
+  "Pasta inválida": [
+    "Invalid folder",
+    "Nieprawidłowy folder"
+  ],
+  "Selecione a pasta do backup para restaurar": [
+    "Select the backup folder to restore",
+    "Wybierz folder kopii do przywrócenia"
+  ],
+  "Escolha a pasta minimap ou o aplicativo Tibia": [
+    "Choose the minimap folder or the Tibia app",
+    "Wybierz folder minimap lub aplikację Tibia"
+  ],
+  "Pronto para atualizar": [
+    "Ready to update",
+    "Gotowe do aktualizacji"
+  ],
+  "Baixando mapas…": [
+    "Downloading maps…",
+    "Pobieranie map…"
+  ],
+  "Verificando pacote e preparando backup…": [
+    "Checking package and preparing update…",
+    "Sprawdzanie pakietu i przygotowanie aktualizacji…"
+  ],
+  "Mapas atualizados. Suas marcações foram preservadas.": [
+    "Maps updated. Your markers were preserved.",
+    "Mapy zaktualizowane. Twoje znaczniki zostały zachowane."
+  ],
+  "Mapas e marcações atualizados conforme o pacote.": [
+    "Maps and markers updated from the package.",
+    "Mapy i znaczniki zaktualizowane zgodnie z pakietem."
+  ],
+  "Não foi possível atualizar": [
+    "Could not update",
+    "Nie udało się zaktualizować"
+  ],
+  "Restaurando backup…": [
+    "Restoring backup…",
+    "Przywracanie kopii zapasowej…"
+  ],
+  "Backup restaurado com sucesso.": [
+    "Backup restored successfully.",
+    "Kopia zapasowa została przywrócona."
+  ],
+  "Não foi possível restaurar": [
+    "Could not restore",
+    "Nie udało się przywrócić"
+  ],
+  "Desativado": [
+    "Disabled",
+    "Wyłączone"
+  ],
+  "%d arquivos de mapa instalados.\n%d arquivos pessoais preservados sem modificações.\n\nDestino: %@\n\nBackup: %@": [
+    "%d map files installed.\n%d personal files preserved unchanged.\n\nDestination: %@\n\nBackup: %@",
+    "Zainstalowano %d plików map.\nZachowano %d plików osobistych bez zmian.\n\nFolder docelowy: %@\n\nKopia zapasowa: %@"
+  ],
+  "Restaurado de: %@\nDestino: %@\nBackup anterior à restauração: %@": [
+    "Restored from: %@\nDestination: %@\nBackup before restoring: %@",
+    "Przywrócono z: %@\nFolder docelowy: %@\nKopia sprzed przywracania: %@"
+  ],
+  "Suas marcações": [
+    "Your markers",
+    "Twoje znaczniki"
+  ],
+  "Somente leitura · dê dois cliques para ir até a marcação": [
+    "Read only · double-click to go to a marker",
+    "Tylko do odczytu · kliknij dwukrotnie, aby przejść do znacznika"
+  ],
+  "Fechar": [
+    "Close",
+    "Zamknij"
+  ],
+  "Buscar descrição, coordenada ou origem": [
+    "Search description, coordinate or source",
+    "Szukaj opisu, współrzędnych lub źródła"
+  ],
+  "Lendo arquivos…": [
+    "Reading files…",
+    "Odczytywanie plików…"
+  ],
+  "Descrição": [
+    "Description",
+    "Opis"
+  ],
+  "Andar": [
+    "Floor",
+    "Poziom"
+  ],
+  "Ícone": [
+    "Icon",
+    "Ikona"
+  ],
+  "Origem": [
+    "Source",
+    "Źródło"
+  ],
+  "Normal": [
+    "Normal",
+    "Zwykłe"
+  ],
+  "Privada": [
+    "Private",
+    "Prywatne"
+  ],
+  "Abrir no mapa": [
+    "Open on map",
+    "Otwórz na mapie"
+  ],
+  "%d de %d marcações. Andar 7 = superfície. Ícone = código no Tibia.": [
+    "%d of %d markers. Floor 7 = ground level. Icon = Tibia icon code.",
+    "%d z %d znaczników. Poziom 7 = powierzchnia. Ikona = kod ikony w Tibii."
+  ],
+  "As bases normal e privada podem conter marcações repetidas. Nenhum arquivo é alterado.": [
+    "Normal and private data may contain duplicate markers. No files are changed.",
+    "Zbiory zwykły i prywatny mogą zawierać powtarzające się znaczniki. Żadne pliki nie są zmieniane."
+  ],
+  "Mapa local": [
+    "Local map",
+    "Mapa lokalna"
+  ],
+  "Arraste para navegar · role para aproximar · andares 0–15": [
+    "Drag to pan · scroll to zoom · floors 0–15",
+    "Przeciągnij, aby przesunąć · przewiń, aby powiększyć · poziomy 0–15"
+  ],
+  "Centralizar": [
+    "Center",
+    "Wyśrodkuj"
+  ],
+  "Ir": [
+    "Go",
+    "Przejdź"
+  ],
+  "Carregando mapas…": [
+    "Loading maps…",
+    "Wczytywanie map…"
+  ],
+  "Nenhum mapa local encontrado. Escolha a pasta do minimapa ou atualize os mapas primeiro.": [
+    "No local maps found. Choose the minimap folder or update your maps first.",
+    "Nie znaleziono lokalnych map. Wybierz folder minimapy lub najpierw zaktualizuj mapy."
+  ],
+  "Sem mapa nesta área ou andar.": [
+    "No map in this area or on this floor.",
+    "Brak mapy tego obszaru lub poziomu."
+  ],
+  "Coordenadas inválidas. Use X e Y entre 0 e 65535.": [
+    "Invalid coordinates. Use X and Y between 0 and 65535.",
+    "Nieprawidłowe współrzędne. X i Y muszą mieścić się w zakresie od 0 do 65535."
+  ],
+  "Créditos": [
+    "Credits",
+    "Podziękowania"
+  ],
+  "Mapas: TibiaMaps.io e seus colaboradores. Tibia é uma criação da CipSoft GmbH.": [
+    "Maps: TibiaMaps.io and its contributors. Tibia is created by CipSoft GmbH.",
+    "Mapy: TibiaMaps.io i współtwórcy. Tibia jest dziełem CipSoft GmbH."
+  ],
+  "O visualizador usa seus mapas locais e funciona sem abrir o Tibia.": [
+    "The viewer uses your local maps and works without opening Tibia.",
+    "Przeglądarka korzysta z lokalnych map i działa bez uruchamiania Tibii."
+  ],
+  "Feche o Tibia e o launcher antes de atualizar os mapas.": [
+    "Close Tibia and its launcher before updating maps.",
+    "Zamknij Tibię i jej program uruchamiający przed aktualizacją map."
+  ],
+  "O servidor não retornou um pacote válido. Tente novamente mais tarde.": [
+    "The server did not return a valid package. Please try again later.",
+    "Serwer nie zwrócił prawidłowego pakietu. Spróbuj ponownie później."
+  ],
+  "Selecione a pasta minimap, Resources, packages ou o aplicativo Tibia.": [
+    "Select the minimap, Resources or packages folder, or the Tibia app.",
+    "Wybierz folder minimap, Resources lub packages albo aplikację Tibia."
+  ],
+  "A pasta não pode ser um link simbólico: %@": [
+    "The folder cannot be a symbolic link: %@",
+    "Folder nie może być dowiązaniem symbolicznym: %@"
+  ],
+  "Arquivo ou subpasta inesperada: %@. Nada foi alterado.": [
+    "Unexpected file or subfolder: %@. Nothing was changed.",
+    "Nieoczekiwany plik lub podfolder: %@. Nic nie zostało zmienione."
+  ],
+  "O pacote de mapas contém entradas inválidas ou excede o limite de tamanho.": [
+    "The map package contains invalid entries or exceeds the size limit.",
+    "Pakiet map zawiera nieprawidłowe elementy lub przekracza limit rozmiaru."
+  ],
+  "O pacote não contém mapas válidos.": [
+    "The package does not contain valid maps.",
+    "Pakiet nie zawiera prawidłowych map."
+  ],
+  "Mapa inválido: %@": [
+    "Invalid map: %@",
+    "Nieprawidłowa mapa: %@"
+  ],
+  "Os mapas foram alterados durante a instalação. Feche o Tibia e tente novamente.": [
+    "The maps changed during installation. Close Tibia and try again.",
+    "Mapy zostały zmienione podczas instalacji. Zamknij Tibię i spróbuj ponownie."
+  ],
+  "Não foi possível concluir a troca de mapas: %@. Os mapas originais foram mantidos.": [
+    "Could not replace maps: %@. The original maps were kept.",
+    "Nie udało się zastąpić map: %@. Oryginalne mapy zostały zachowane."
+  ],
+  "Selecione um backup que contenha arquivos de minimapa.": [
+    "Select a backup containing minimap files.",
+    "Wybierz kopię zapasową zawierającą pliki minimapy."
+  ],
+  "O backup precisa estar fora da pasta de destino.": [
+    "The backup must be outside the destination folder.",
+    "Kopia zapasowa musi znajdować się poza folderem docelowym."
+  ],
+  "Os arquivos mudaram durante a restauração. Nada foi substituído.": [
+    "Files changed during restoration. Nothing was replaced.",
+    "Pliki zmieniły się podczas przywracania. Nic nie zostało zastąpione."
+  ],
+  "Não foi possível restaurar: %@. Os mapas atuais foram mantidos.": [
+    "Could not restore: %@. The current maps were kept.",
+    "Nie udało się przywrócić: %@. Bieżące mapy zostały zachowane."
+  ],
+  "Arquivo de marcações truncado.": [
+    "Truncated marker file.",
+    "Niekompletny plik znaczników."
+  ],
+  "Número inválido no arquivo de marcações.": [
+    "Invalid number in marker file.",
+    "Nieprawidłowa liczba w pliku znaczników."
+  ],
+  "Formato de marcações não reconhecido.": [
+    "Unrecognized marker format.",
+    "Nierozpoznany format znaczników."
+  ],
+  "Versão do arquivo de marcações não suportada.": [
+    "Unsupported marker file version.",
+    "Nieobsługiwana wersja pliku znaczników."
+  ],
+  "Arquivo de marcações muito grande.": [
+    "Marker file is too large.",
+    "Plik znaczników jest zbyt duży."
+  ],
+  "Registro de marcação inválido.": [
+    "Invalid marker record.",
+    "Nieprawidłowy rekord znacznika."
+  ],
+  "Marcação sem coordenadas.": [
+    "Marker has no coordinates.",
+    "Znacznik nie ma współrzędnych."
+  ],
+  "Descrição ou andar inválido no arquivo de marcações.": [
+    "Invalid description or floor in marker file.",
+    "Nieprawidłowy opis lub poziom w pliku znaczników."
+  ],
+  "Arquivo inválido ou muito grande.": [
+    "Invalid or oversized file.",
+    "Nieprawidłowy lub zbyt duży plik."
+  ],
+  "Em andamento": [
+    "In progress",
+    "W toku"
+  ],
+  "Backups": [
+    "Backups",
+    "Kopie zapasowe"
+  ],
+  "Configurações": [
+    "Settings",
+    "Ustawienia"
+  ],
+  "Nomes originais dos pacotes do TibiaMaps.io.": [
+    "Original package names from TibiaMaps.io.",
+    "Oryginalne nazwy pakietów z TibiaMaps.io."
+  ],
+  "Restaure mapas e marcações a partir de uma cópia anterior.": [
+    "Restore maps and markers from an earlier backup.",
+    "Przywróć mapy i znaczniki z wcześniejszej kopii."
+  ],
+  "A restauração substitui todo o conteúdo da pasta do minimapa. A preservação de marcações não se aplica à restauração.": [
+    "Restoring replaces the entire minimap folder contents. Marker preservation does not apply to restoring.",
+    "Przywracanie zastępuje całą zawartość folderu minimapy. Zachowywanie znaczników nie dotyczy przywracania."
+  ],
+  "A opção automática segue os idiomas preferidos do macOS. A escolha manual é salva neste Mac.": [
+    "Automatic mode follows your macOS preferred languages. Your manual choice is saved on this Mac.",
+    "Tryb automatyczny używa preferowanych języków macOS. Ręczny wybór jest zapisywany na tym Macu."
+  ],
+  "Tibia pertence à CipSoft GmbH.": [
+    "Tibia belongs to CipSoft GmbH.",
+    "Tibia należy do CipSoft GmbH."
+  ],
+  "Os mapas pertencem ao TibiaMaps.io.": [
+    "The maps belong to TibiaMaps.io.",
+    "Mapy należą do TibiaMaps.io."
+  ],
+  "Programa desenvolvido por Marcio Barbato.": [
+    "Application developed by Marcio Barbato.",
+    "Aplikacja opracowana przez Marcio Barbato."
+  ],
+  "Exibir marcações": [
+    "Show markers",
+    "Pokaż znaczniki"
+  ],
+  "Seguir rolagem do macOS": [
+    "Follow macOS scrolling",
+    "Używaj kierunku przewijania macOS"
+  ],
+  "Zoom natural": [
+    "Natural zoom",
+    "Naturalny zoom"
+  ],
+  "Atualizar visualização": [
+    "Refresh view",
+    "Odśwież widok"
+  ],
+  "A direção do zoom segue a rolagem do macOS. Desative para escolher Zoom natural manualmente.": [
+    "Zoom follows macOS scrolling. Turn this off to choose Natural zoom manually.",
+    "Kierunek zoomu jest zgodny z przewijaniem macOS. Wyłącz tę opcję, aby ręcznie wybrać naturalny zoom."
+  ],
+  "Zoom natural inverte o sentido da roda. A pinça e os botões de zoom mantêm o comportamento habitual.": [
+    "Natural zoom reverses the wheel direction. Pinch gestures and zoom buttons work as usual.",
+    "Naturalny zoom odwraca kierunek kółka. Gesty szczypania i przyciski zoomu działają jak zwykle."
+  ],
+  "%d marcações carregadas · passe o mouse para ler a descrição.": [
+    "%d markers loaded · hover to read the description.",
+    "Wczytano %d znaczników · najedź kursorem, aby przeczytać opis."
+  ],
+  "%d marcações visíveis": [
+    "%d visible markers",
+    "Widoczne znaczniki: %d"
+  ],
+  "Marcações ocultas": [
+    "Markers hidden",
+    "Znaczniki ukryte"
+  ],
+  "%d de %d marcações. Andar 7 = superfície.": [
+    "%d of %d markers. Floor 7 = surface.",
+    "%d z %d znaczników. Poziom 7 = powierzchnia."
+  ],
+  "Minimapa com marcações": [
+    "Minimap with markers",
+    "Minimapa ze znacznikami"
+  ],
+  "Minimapa sem marcações": [
+    "Minimap without markers",
+    "Minimapa bez znaczników"
+  ],
+  "Minimapa com grade e marcações": [
+    "Minimap with grid and markers",
+    "Minimapa z siatką i znacznikami"
+  ],
+  "Minimapa com grade e pontos de interesse": [
+    "Minimap with grid and points of interest",
+    "Minimapa z siatką i punktami zainteresowania"
+  ],
+  "Minimapa com grade sem marcações": [
+    "Minimap with grid without markers",
+    "Minimapa z siatką bez znaczników"
+  ],
+  "Mapas fornecidos pelo TibiaMaps.io.": [
+    "Maps provided by TibiaMaps.io.",
+    "Mapy dostarczane przez TibiaMaps.io."
+  ],
+  "Selecione a pasta que contém minimap, como Resources, para permitir a atualização segura.": [
+    "Select the folder containing minimap, such as Resources, to allow safe updates.",
+    "Wybierz folder zawierający minimap, np. Resources, aby umożliwić bezpieczne aktualizacje."
+  ],
+  "Selecione uma pasta válida, sem links simbólicos.": [
+    "Select a valid folder without symbolic links.",
+    "Wybierz prawidłowy folder bez dowiązań symbolicznych."
+  ],
+  "Autorize a pasta dos mapas antes de continuar.": [
+    "Authorize the maps folder before continuing.",
+    "Przed kontynuowaniem zezwól na dostęp do folderu map."
+  ],
+  "Conecte seus mapas": [
+    "Connect your maps",
+    "Połącz swoje mapy"
+  ],
+  "Escolha a pasta Resources do Tibia, que contém minimap. O macOS lembrará sua autorização para visualizar, atualizar e restaurar os mapas.": [
+    "Choose the Tibia Resources folder containing minimap. macOS will remember your permission to view, update and restore maps.",
+    "Wybierz folder Resources Tibii zawierający minimap. macOS zapamięta zgodę na przeglądanie, aktualizację i przywracanie map."
+  ],
+  "Autorizar pasta dos mapas": [
+    "Authorize maps folder",
+    "Zezwól na dostęp do folderu map"
+  ],
+  "Autorizar pasta": [
+    "Authorize folder",
+    "Zezwól na dostęp"
+  ],
+  "Cliente do Tibia": [
+    "Tibia client",
+    "Klient Tibii"
+  ],
+  "Launcher do Tibia": [
+    "Tibia launcher",
+    "Launcher Tibii"
+  ],
+  "Em execução: %@. Feche para continuar.": [
+    "Running: %@. Close to continue.",
+    "Uruchomione: %@. Zamknij, aby kontynuować."
+  ],
+  "Tibia e launcher fechados.": [
+    "Tibia and launcher are closed.",
+    "Tibia i launcher są zamknięte."
+  ],
+  "Destino: %@": [
+    "Destination: %@",
+    "Miejsce docelowe: %@"
+  ],
+  "Arraste para navegar · role para aproximar · andares +7 a −8": [
+    "Drag to pan · scroll to zoom · floors +7 to −8",
+    "Przeciągnij mapę · przewiń, aby powiększyć · poziomy od +7 do −8"
+  ],
+  "%d de %d marcações. Andar 0 = superfície.": [
+    "%d of %d markers. Floor 0 = surface.",
+    "%d z %d znaczników. Poziom 0 = powierzchnia."
+  ]
+}
