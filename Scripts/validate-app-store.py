@@ -3,7 +3,7 @@
 import pathlib, plistlib, subprocess, sys
 app = pathlib.Path(sys.argv[1])
 info = plistlib.loads((app / 'Contents/Info.plist').read_bytes())
-assert info['CFBundleShortVersionString'] == '2.2'
+assert info['CFBundleShortVersionString'] == '2.3'
 assert info['CFBundleIdentifier'] == 'barbato.TibiaMapa'
 assert info['LSApplicationCategoryType'] == 'public.app-category.utilities'
 entitlements = plistlib.loads(subprocess.check_output(['codesign', '-d', '--entitlements', ':-', str(app)], stderr=subprocess.DEVNULL))

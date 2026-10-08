@@ -7,19 +7,19 @@ final class MarkerBrowserState: ObservableObject {
     @Published var descriptionFilter = ""
     @Published var xFilter = ""
     @Published var yFilter = ""
-    @Published var floorFilter = ""
-    @Published var iconFilter = ""
+    @Published var floorFilter: UInt64?
+    @Published var iconFilter: UInt64?
     @Published var selection: Set<Int> = []
     @Published var sortOrder: [KeyPathComparator<MapMarker>] = [KeyPathComparator(\.x)]
 
     var hasColumnFilters: Bool {
         !descriptionFilter.isEmpty || !xFilter.isEmpty || !yFilter.isEmpty ||
-        !floorFilter.isEmpty || !iconFilter.isEmpty
+        floorFilter != nil || iconFilter != nil
     }
     func resetFilters() {
         search = ""; origin = .all
         descriptionFilter = ""; xFilter = ""; yFilter = ""
-        floorFilter = ""; iconFilter = ""
+        floorFilter = nil; iconFilter = nil
     }
     func results(from markers: [MapMarker]) -> [MapMarker] {
         markers.filter { marker in
@@ -28,8 +28,8 @@ final class MarkerBrowserState: ObservableObject {
             (descriptionFilter.isEmpty || marker.text.localizedCaseInsensitiveContains(descriptionFilter)) &&
             (xFilter.isEmpty || String(marker.x).contains(xFilter)) &&
             (yFilter.isEmpty || String(marker.y).contains(yFilter)) &&
-            (floorFilter.isEmpty || MapFloor.label(for: Int(marker.z)).contains(floorFilter)) &&
-            (iconFilter.isEmpty || String(marker.icon).contains(iconFilter))
+            (floorFilter == nil || marker.z == floorFilter) &&
+            (iconFilter == nil || marker.icon == iconFilter)
         }.sorted(using: sortOrder)
     }
 }
@@ -75,8 +75,21 @@ struct MarkerView: View {
                         TextField(L.text("Descrição"), text: $browser.descriptionFilter)
                         TextField("X", text: $browser.xFilter)
                         TextField("Y", text: $browser.yFilter)
-                        TextField(L.text("Andar"), text: $browser.floorFilter)
-                        TextField(L.text("Ícone"), text: $browser.iconFilter)
+                        Picker(L.text("Andar"), selection: $browser.floorFilter) {
+                            Text(L.text("Todos os andares")).tag(nil as UInt64?)
+                            ForEach(Array(Set(markers.map(\.z))).sorted(), id: \.self) { floor in
+                                Text(MapFloor.label(for: Int(floor))).tag(Optional(floor))
+                            }
+                        }.pickerStyle(.menu)
+                        Picker(L.text("Ícone"), selection: $browser.iconFilter) {
+                            Text(L.text("Todos os ícones")).tag(nil as UInt64?)
+                            ForEach(Array(Set(markers.map(\.icon))).sorted(), id: \.self) { icon in
+                                HStack {
+                                    MarkerIconView(id: icon)
+                                    Text(L.text("Ícone") + " \(icon)")
+                                }.tag(Optional(icon))
+                            }
+                        }.pickerStyle(.menu)
                         Button(L.text("Limpar filtros")) { browser.resetFilters() }
                     }.textFieldStyle(.roundedBorder).padding(18).frame(width: 260)
                 }

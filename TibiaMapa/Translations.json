@@ -539,6 +539,14 @@
     "%d of %d markers. Floor 0 = surface.",
     "%d z %d znaczników. Poziom 0 = powierzchnia."
   ],
+  "Todos os andares": [
+    "All floors",
+    "Wszystkie poziomy"
+  ],
+  "Todos os ícones": [
+    "All icons",
+    "Wszystkie ikony"
+  ],
   "Todas": [
     "All",
     "Wszystkie"

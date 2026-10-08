@@ -266,6 +266,15 @@ struct TibiaMapaTests {
         #expect(browser.results(from: markers).map(\.x) == [3, 20, 100])
         browser.sortOrder = [KeyPathComparator(\.x, order: .reverse)]
         #expect(browser.results(from: markers).map(\.x) == [100, 20, 3])
+        browser.iconFilter = 2
+        #expect(browser.results(from: markers).map(\.id) == [1])
+        browser.floorFilter = 9
+        #expect(browser.results(from: markers).isEmpty)
+        browser.floorFilter = 8
+        #expect(browser.results(from: markers).map(\.id) == [1])
+        browser.resetFilters()
+        #expect(browser.iconFilter == nil && browser.floorFilter == nil)
+        #expect(browser.results(from: markers).count == 3)
     }
 
     @Test @MainActor func allTibiaMarkerIconsLoadInCorrectOrder() {
