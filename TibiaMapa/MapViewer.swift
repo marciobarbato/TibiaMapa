@@ -53,9 +53,8 @@ struct MapViewer: View {
     let destination: URL
     @ObservedObject var navigation: MapNavigation
     @AppStorage("appLanguage") private var language = "system"
-    @AppStorage(MapPreferenceKeys.showMarkers) private var showMarkers = true
+    @AppStorage(MapPreferenceKeys.markerDisplay) private var markerDisplay = MarkerDisplayMode.all.rawValue
     @AppStorage(MapPreferenceKeys.followsSystem) private var followsSystemScrolling = true
-    @AppStorage(MapPreferenceKeys.naturalZoom) private var naturalZoom = true
     @State private var overlay = MarkerOverlay()
     @State private var refreshID = UUID()
     @State private var loadedID = UUID()
@@ -93,16 +92,15 @@ struct MapViewer: View {
                 }
             }.textFieldStyle(.roundedBorder)
             HStack(spacing: 18) {
-                Toggle(L.text("Exibir marcações"), isOn: $showMarkers)
+                Picker(L.text("Exibir marcações"), selection: $markerDisplay) {
+                    ForEach(MarkerDisplayMode.allCases) { mode in Text(mode.title).tag(mode.rawValue) }
+                }.frame(width: 260)
                 Toggle(L.text("Seguir rolagem do macOS"), isOn: $followsSystemScrolling)
-                Toggle(L.text("Zoom natural"), isOn: $naturalZoom).disabled(followsSystemScrolling)
             }.font(.callout)
-            Text(L.text(followsSystemScrolling ? "A direção do zoom segue a rolagem do macOS. Desative para escolher Zoom natural manualmente." : "Zoom natural inverte o sentido da roda. A pinça e os botões de zoom mantêm o comportamento habitual."))
-                .font(.caption).foregroundStyle(.secondary)
             ZStack {
                 LocalMapCanvas(tiles: tiles, navigation: navigation, overlay: overlay,
-                               showMarkers: showMarkers, followsSystemScrolling: followsSystemScrolling,
-                               naturalZoom: naturalZoom, revision: loadedID)
+                               markerDisplay: MarkerDisplayMode(rawValue: markerDisplay) ?? .all,
+                               followsSystemScrolling: followsSystemScrolling, revision: loadedID)
                     .clipShape(RoundedRectangle(cornerRadius: 14))
                 if loading { ProgressView(L.text("Carregando mapas…")).padding(20).background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12)) }
                 else if tiles.isEmpty {
@@ -118,7 +116,10 @@ struct MapViewer: View {
                 Spacer()
                 if let target = navigation.target { Text(target.text).lineLimit(1) }
             }.font(.caption).foregroundStyle(.secondary)
-            Text(showMarkers ? L.format("%d marcações carregadas · passe o mouse para ler a descrição.", overlay.count) : L.text("Marcações ocultas"))
+            Text(markerDisplay == MarkerDisplayMode.none.rawValue
+                 ? L.text("Marcações ocultas")
+                 : L.format("%d marcações carregadas · passe o mouse para ler a descrição.",
+                            overlay.count(for: MarkerDisplayMode(rawValue: markerDisplay) ?? .all)))
                 .font(.caption).foregroundStyle(.secondary)
             Text(L.text("O visualizador usa seus mapas locais e funciona sem abrir o Tibia."))
                 .font(.caption).foregroundStyle(.secondary)
@@ -163,9 +164,8 @@ struct LocalMapCanvas: NSViewRepresentable {
     let tiles: [TileCoordinate: URL]
     @ObservedObject var navigation: MapNavigation
     let overlay: MarkerOverlay
-    let showMarkers: Bool
+    let markerDisplay: MarkerDisplayMode
     let followsSystemScrolling: Bool
-    let naturalZoom: Bool
     let revision: UUID
     func makeNSView(context: Context) -> TileCanvas {
         let view = TileCanvas()
@@ -175,9 +175,8 @@ struct LocalMapCanvas: NSViewRepresentable {
     func updateNSView(_ view: TileCanvas, context: Context) {
         if view.revision != revision { view.cache.removeAllObjects(); view.tiles = tiles; view.revision = revision }
         view.overlay = overlay
-        view.showMarkers = showMarkers
+        view.markerDisplay = markerDisplay
         view.followsSystemScrolling = followsSystemScrolling
-        view.naturalZoom = naturalZoom
         view.navigation = navigation
         view.needsDisplay = true
     }
@@ -188,9 +187,8 @@ final class TileCanvas: NSView {
     var navigation: MapNavigation!
     let cache = NSCache<NSURL, NSImage>()
     var overlay = MarkerOverlay()
-    var showMarkers = true
+    var markerDisplay: MarkerDisplayMode = .all
     var followsSystemScrolling = true
-    var naturalZoom = true
     var revision: UUID?
     private var markerTooltips: [NSView.ToolTipTag: String] = [:]
     private(set) var renderedMarkerCount = 0
@@ -236,10 +234,10 @@ final class TileCanvas: NSView {
         removeAllToolTips()
         markerTooltips.removeAll(keepingCapacity: true)
         renderedMarkerCount = 0
-        if showMarkers {
+        if markerDisplay != .none {
             let world = CGRect(x: left - 14 / zoom, y: top - 14 / zoom,
                                width: (bounds.width + 28) / zoom, height: (bounds.height + 28) / zoom)
-            for marker in overlay.visible(in: world, floor: n.floor) {
+            for marker in overlay.visible(in: world, floor: n.floor, mode: markerDisplay) {
                 let point = NSPoint(x: (Double(marker.x) + 0.5 - left) * zoom, y: (Double(marker.y) + 0.5 - top) * zoom)
                 let rect = NSRect(x: point.x - 11, y: point.y - 11, width: 22, height: 22)
                 MarkerIcon.image(for: marker.icon)?.draw(in: rect, from: .zero, operation: .sourceOver,
@@ -250,7 +248,7 @@ final class TileCanvas: NSView {
                 renderedMarkerCount += 1
             }
         }
-        if showMarkers, let target = n.target, target.z == UInt64(n.floor) {
+        if let target = n.target, markerDisplay.includes(target), target.z == UInt64(n.floor) {
             let point = NSPoint(x: (Double(target.x) + 0.5 - left) * zoom, y: (Double(target.y) + 0.5 - top) * zoom)
             NSColor.systemYellow.setStroke()
             let circle = NSBezierPath(ovalIn: NSRect(x: point.x - 10, y: point.y - 10, width: 20, height: 20))
@@ -273,7 +271,7 @@ final class TileCanvas: NSView {
         let point = convert(event.locationInWindow, from: nil)
         let old = navigation.zoom
         let factor = MapZoomPolicy.factor(delta: event.scrollingDeltaY, invertedFromDevice: event.isDirectionInvertedFromDevice,
-                                          followsSystem: followsSystemScrolling, natural: naturalZoom,
+                                          followsSystem: followsSystemScrolling, natural: false,
                                           precise: event.hasPreciseScrollingDeltas)
         navigation.zoom(to: old * factor)
         navigation.move(x: navigation.x + (point.x - bounds.midX) * (1 / old - 1 / navigation.zoom),
@@ -287,6 +285,8 @@ final class TileCanvas: NSView {
         case 124: navigation.move(x: navigation.x+step, y: navigation.y)
         case 125: navigation.move(x: navigation.x, y: navigation.y+step)
         case 126: navigation.move(x: navigation.x, y: navigation.y-step)
+        case 116: navigation.floor = max(0, navigation.floor - 1) // Page Up / Fn-Up
+        case 121: navigation.floor = min(15, navigation.floor + 1) // Page Down / Fn-Down
         default: super.keyDown(with: event)
         }
     }

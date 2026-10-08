@@ -15,6 +15,7 @@ enum MapZoomPolicy {
 
 enum MapPreferenceKeys {
     static let showMarkers = "viewer.showMarkers"
+    static let markerDisplay = "viewer.markerDisplay"
     static let followsSystem = "viewer.followsSystemScrolling"
     static let naturalZoom = "viewer.naturalZoom"
     static let x = "viewer.centerX"

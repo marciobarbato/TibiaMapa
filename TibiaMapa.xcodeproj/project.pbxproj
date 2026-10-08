@@ -405,7 +405,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = TF3GU6U7H8;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_APP_SANDBOX = YES;
@@ -418,7 +418,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -436,7 +436,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = TF3GU6U7H8;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_APP_SANDBOX = YES;
@@ -449,7 +449,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -463,10 +463,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				DEVELOPMENT_TEAM = TF3GU6U7H8;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapaTests;
@@ -482,10 +482,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				DEVELOPMENT_TEAM = TF3GU6U7H8;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapaTests;
@@ -500,9 +500,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				DEVELOPMENT_TEAM = TF3GU6U7H8;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapaUITests;
@@ -517,9 +517,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 11;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				DEVELOPMENT_TEAM = TF3GU6U7H8;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				PRODUCT_BUNDLE_IDENTIFIER = barbato.TibiaMapaUITests;
