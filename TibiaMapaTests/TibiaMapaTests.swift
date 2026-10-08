@@ -107,6 +107,21 @@ struct TibiaMapaTests {
             #expect(try MapEngine.snapshot(safety!) == before)
         }
     }
+    @Test func backupCatalogListsTheActualBackupRootInDateOrder() throws {
+        try fixture { _, _, backups in
+            #expect(try BackupCatalog.list(in: backups).isEmpty)
+            let older = backups.appendingPathComponent("2026-10-08T12-40-14Z-old")
+            let newer = backups.appendingPathComponent("2026-10-08T17-23-15Z-new")
+            let empty = backups.appendingPathComponent("empty")
+            for folder in [older, newer, empty] {
+                try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+            }
+            try tile.write(to: older.appendingPathComponent(name))
+            try tile.write(to: newer.appendingPathComponent(name))
+            let entries = try BackupCatalog.list(in: backups)
+            #expect(entries.map { $0.url.lastPathComponent } == [newer.lastPathComponent, older.lastPathComponent])
+        }
+    }
     @Test func failedRestoreKeepsCurrentAndNoBackupOptionWorks() throws {
         try fixture { src, dst, backups in
             try tile.write(to: src.appendingPathComponent(name))

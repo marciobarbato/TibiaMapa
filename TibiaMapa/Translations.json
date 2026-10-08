@@ -67,6 +67,26 @@
     "Open backups",
     "Otwórz kopie zapasowe"
   ],
+  "Atualizar lista": [
+    "Refresh list",
+    "Odśwież listę"
+  ],
+  "Escolher outra pasta…": [
+    "Choose another folder…",
+    "Wybierz inny folder…"
+  ],
+  "Nenhum backup encontrado nesta instalação.": [
+    "No backups found in this installation.",
+    "Nie znaleziono kopii zapasowych w tej instalacji."
+  ],
+  "Cópia anterior a uma restauração": [
+    "Copy made before a restore",
+    "Kopia sprzed przywrócenia"
+  ],
+  "Restaurar": [
+    "Restore",
+    "Przywróć"
+  ],
   "Explorar mapa": [
     "Explore map",
     "Przeglądaj mapę"

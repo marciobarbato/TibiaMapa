@@ -29,6 +29,7 @@ struct ContentView: View {
     @State private var confirm = false
     @State private var restoreBackup: URL?
     @State private var confirmRestore = false
+    @State private var backups: [BackupEntry] = []
     @State private var selectionError: String?
     var body: some View {
         NavigationSplitView {
@@ -175,14 +176,39 @@ struct ContentView: View {
                 Text(L.text("A restauração substitui todo o conteúdo da pasta do minimapa. A preservação de marcações não se aplica à restauração.")).foregroundStyle(.secondary)
                 Toggle(L.text("Fazer backup antes de alterar os mapas"), isOn: $makeBackup)
                 HStack {
-                    Button(L.text("Restaurar backup…"), action: chooseBackup).buttonStyle(.borderedProminent).disabled(!installer.hasFolderAccess || client.isRunning)
+                    Button(L.text("Atualizar lista"), action: reloadBackups)
                     Button(L.text("Abrir backups"), action: openBackups)
+                    Button(L.text("Escolher outra pasta…"), action: chooseBackup).disabled(!installer.hasFolderAccess || client.isRunning)
                 }
+                if backups.isEmpty {
+                    Text(L.text("Nenhum backup encontrado nesta instalação.")).foregroundStyle(.secondary)
+                } else {
+                    ForEach(backups) { backup in
+                        HStack(spacing: 16) {
+                            Image(systemName: "folder.fill").foregroundStyle(.teal)
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text(backup.date.formatted(Date.FormatStyle(date: .abbreviated, time: .shortened)
+                                    .locale(Locale(identifier: L.language.rawValue)))).font(.headline)
+                                if backup.isPreRestore {
+                                    Text(L.text("Cópia anterior a uma restauração")).font(.caption).foregroundStyle(.secondary)
+                                }
+                            }
+                            Spacer()
+                            Button(L.text("Restaurar")) {
+                                restoreBackup = backup.url
+                                confirmRestore = true
+                            }.disabled(!installer.hasFolderAccess || client.isRunning)
+                        }.padding(.vertical, 4)
+                        if backup.id != backups.last?.id { Divider() }
+                    }
+                }
+                Text(MapEngine.backupRoot.path).font(.caption2).foregroundStyle(.tertiary).textSelection(.enabled)
             }.panel().disabled(installer.isBusy)
             destinationCard
             clientStatus
             statusCard
-        }
+        }.onAppear(perform: reloadBackups)
+            .onChange(of: installer.isBusy) { busy in if !busy { reloadBackups() } }
     }
     private var settingsPage: some View {
         VStack(alignment: .leading, spacing: 22) {
@@ -232,6 +258,10 @@ struct ContentView: View {
             try FileManager.default.createDirectory(at: MapEngine.backupRoot, withIntermediateDirectories: true)
             NSWorkspace.shared.open(MapEngine.backupRoot)
         } catch { selectionError = error.localizedDescription }
+    }
+    private func reloadBackups() {
+        do { backups = try BackupCatalog.list() }
+        catch { selectionError = error.localizedDescription }
     }
     private func chooseBackup() {
         let panel = NSOpenPanel()
