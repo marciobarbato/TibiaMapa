@@ -17,7 +17,7 @@ This is an independent project with no affiliation with CipSoft or TibiaMaps.io.
 
 ## Install and use
 
-TibiaMapa requires macOS 13 or later and supports Apple Silicon and Intel Macs. Download the signed, notarized DMG from [GitHub Releases](https://github.com/marciobarbato/TibiaMapa/releases). Version 2.2 has been submitted for Mac App Store review; version 2.3 is available as a direct download. The [support site](https://marciobarbato.github.io/TibiaMapa/) provides contact information, privacy details, and credits. To build locally, open `TibiaMapa.xcodeproj` in Xcode, select the `TibiaMapa` scheme, and run the app.
+TibiaMapa requires macOS 13 or later and supports Apple Silicon and Intel Macs. Download the signed, notarized DMG from [GitHub Releases](https://github.com/marciobarbato/TibiaMapa/releases). Version 2.3 is available as a direct download and has been submitted for Mac App Store review. The [support site](https://marciobarbato.github.io/TibiaMapa/) provides contact information, privacy details, and credits. To build locally, open `TibiaMapa.xcodeproj` in Xcode, select the `TibiaMapa` scheme, and run the app.
 
 On first launch, use the macOS folder picker to select the Tibia installation's **Resources** folder, which contains `minimap`. Selecting `minimap` alone does not give the sandbox enough access to replace maps safely. Close both the Tibia client and launcher before updating or restoring maps. We recommend creating a backup before the first update of your real maps.
 
