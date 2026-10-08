@@ -17,6 +17,7 @@ enum MarkerReader {
         let number: UInt64
         let integer: UInt64?
         let bytes: Data?
+        var encoded = Data()
     }
     static func fields(_ data: Data) throws -> [Field] {
         let bytes = Array(data)
@@ -34,6 +35,7 @@ enum MarkerReader {
         }
         var output: [Field] = []
         while cursor < bytes.count {
+            let start = cursor
             let key = try varint()
             let number = key >> 3
             guard number > 0 else { throw MapFailure("Formato de marcações não reconhecido.") }
@@ -43,6 +45,7 @@ enum MarkerReader {
                 let length = key & 7 == 1 ? 8 : 4
                 guard length <= bytes.count - cursor else { throw MapFailure("Arquivo de marcações truncado.") }
                 cursor += length
+                output.append(Field(number: number, integer: nil, bytes: nil))
             case 2:
                 let length = try varint()
                 guard length <= UInt64(bytes.count - cursor) else { throw MapFailure("Arquivo de marcações truncado.") }
@@ -50,6 +53,7 @@ enum MarkerReader {
                 cursor += Int(length)
             default: throw MapFailure("Versão do arquivo de marcações não suportada.")
             }
+            output[output.count - 1].encoded = Data(bytes[start..<cursor])
         }
         return output
     }
@@ -88,4 +92,59 @@ enum MarkerReader {
         return (all, errors.isEmpty ? nil : errors.joined(separator: "\n"))
     }
 
+}
+
+enum MarkerMerger {
+    struct Manifest: Codable {
+        let version: Int
+        let records: [Data]
+        init(records: [Data]) { version = 1; self.records = records }
+    }
+    struct Result {
+        let data: Data
+        let manifest: Manifest
+    }
+    private struct Key: Hashable {
+        let x: UInt64
+        let y: UInt64
+        let z: UInt64
+        let icon: UInt64
+        let text: String
+        init(_ marker: MapMarker) {
+            x = marker.x; y = marker.y; z = marker.z
+            icon = marker.icon; text = marker.text
+        }
+    }
+
+    /// Preserve every byte of existing records (including unknown protobuf
+    /// fields). Only append complete records from the downloaded package.
+    static func reconcile(existing: Data, privateMarkers: Data, incoming: Data, previous: Manifest? = nil) throws -> Result {
+        _ = try MarkerReader.read(existing, source: "Normal")
+        guard previous == nil || previous?.version == 1 else { throw MapFailure("Registro de marcações importadas inválido.") }
+        var remaining = Dictionary((previous?.records ?? []).map { ($0, 1) }, uniquingKeysWith: +)
+        // Imported records were appended. Remove matching records from the end,
+        // keeping all pre-existing records and any imported record edited later.
+        let fields = try MarkerReader.fields(existing).reversed().filter { field in
+            guard field.number == 1, let count = remaining[field.encoded], count > 0 else { return true }
+            remaining[field.encoded] = count - 1
+            return false
+        }.reversed()
+        var merged = fields.reduce(into: Data()) { $0.append($1.encoded) }
+        let local = try MarkerReader.read(merged, source: "Normal")
+        let personal = try MarkerReader.read(privateMarkers, source: "Privada")
+        let downloaded = try MarkerReader.read(incoming, source: "Normal")
+        let records = try MarkerReader.fields(incoming).filter { $0.number == 1 }
+        guard records.count == downloaded.count else { throw MapFailure("Registro de marcação inválido.") }
+        var seen = Set((local + personal).map(Key.init))
+        var imported: [Data] = []
+        for (marker, record) in zip(downloaded, records) where seen.insert(Key(marker)).inserted {
+            merged.append(record.encoded)
+            imported.append(record.encoded)
+        }
+        guard merged.count <= 20 * 1024 * 1024 else { throw MapFailure("Arquivo de marcações muito grande.") }
+        return Result(data: merged, manifest: Manifest(records: imported))
+    }
+    static func merge(existing: Data, privateMarkers: Data, incoming: Data) throws -> Data {
+        try reconcile(existing: existing, privateMarkers: privateMarkers, incoming: incoming).data
+    }
 }

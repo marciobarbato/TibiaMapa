@@ -21,7 +21,9 @@ TibiaMapa requires macOS 13 or later and supports Apple Silicon and Intel Macs. 
 
 On first launch, use the macOS folder picker to select the Tibia installation's **Resources** folder, which contains `minimap`. Selecting `minimap` alone does not give the sandbox enough access to replace maps safely. Close both the Tibia client and launcher before updating or restoring maps. We recommend creating a backup before the first update of your real maps.
 
-With **Preserve my markers** enabled, existing `minimapmarkers.bin` and `privateminimapmarkers.bin` files remain unchanged. Package markers are imported only when the normal marker file does not already exist. The update keeps local map images absent from the package; it does not merge pixels or markers. Disabling preservation may replace or remove both existing marker files, depending on the selected package. Restoring a backup replaces the current content with the selected backup.
+With **Preserve my markers** enabled, personal markers are kept and markers from the selected package are added without exact duplicates. The app tracks records it imports: switching from the PoI package back to normal maps removes unchanged PoI records previously added by TibiaMapa. Edited imported records are preserved, and the private marker file remains unchanged. Pre-existing markers from earlier app versions are not removed automatically because their origin cannot be established safely. A small hidden manifest in the minimap folder keeps this tracking information with backups.
+
+The update keeps local map images absent from the package; it does not merge image pixels. Disabling preservation replaces or removes existing marker files, depending on the selected package. Restoring a backup replaces the current content with the selected backup.
 
 ## Privacy
 
