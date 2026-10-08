@@ -110,7 +110,7 @@ struct ContentView: View {
                 Divider()
                 Toggle(L.text("Preservar minhas marcações"), isOn: $preserveMarkers)
                 Toggle(L.text("Fazer backup antes de alterar os mapas"), isOn: $makeBackup)
-                Text(L.text(preserveMarkers ? "Suas marcações têm prioridade. Marcadores do pacote só são adicionados se você ainda não tiver um arquivo de marcações." : "As marcações atuais, inclusive privadas, serão substituídas pelas do pacote. Um mapa sem marcadores deixará você sem marcações."))
+                Text(L.text(preserveMarkers ? "Suas marcações pessoais são mantidas. As marcações que o TibiaMapa importou são trocadas pelas do pacote escolhido; marcações editadas são preservadas." : "As marcações atuais, inclusive privadas, serão substituídas pelas do pacote. Um mapa sem marcadores deixará você sem marcações."))
                     .font(.callout).foregroundStyle(preserveMarkers ? Color.secondary : Color.orange)
             }.panel().disabled(installer.isBusy)
             destinationCard

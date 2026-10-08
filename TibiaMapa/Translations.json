@@ -590,5 +590,13 @@
   "Aguardando acesso à pasta Resources": [
     "Waiting for access to the Resources folder",
     "Oczekiwanie na dostęp do folderu Resources"
+  ],
+  "Suas marcações pessoais são mantidas. As marcações que o TibiaMapa importou são trocadas pelas do pacote escolhido; marcações editadas são preservadas.": [
+    "Your personal markers are kept. Markers imported by TibiaMapa are replaced with those from the selected package; edited markers are preserved.",
+    "Twoje własne znaczniki zostają zachowane. Znaczniki zaimportowane przez TibiaMapa są zastępowane znacznikami wybranego pakietu; edytowane znaczniki pozostają."
+  ],
+  "Registro de marcações importadas inválido.": [
+    "The imported marker record is invalid.",
+    "Rejestr zaimportowanych znaczników jest nieprawidłowy."
   ]
 }

@@ -15,21 +15,25 @@ struct TibiaMapaTests {
     }
     var tile: Data { Data([137,80,78,71,13,10,26,10,0,0,0,13,73,72,68,82,0,0,1,0,0,0,1,0]) }
     let name = "Minimap_Color_32000_32000_7.png"
+    var markerData: Data { Data([10, 16, 10, 6, 8, 1, 16, 2, 24, 7, 16, 9, 26, 2, 72, 105, 32, 0]) }
     @Test func preservesBothMarkerFilesAndLocalOnlyTiles() throws {
         try fixture { src, dst, backups in
             try tile.write(to: src.appendingPathComponent(name))
-            try Data("downloaded markers".utf8).write(to: src.appendingPathComponent("minimapmarkers.bin"))
+            var downloaded = markerData
+            downloaded[5] = 5
+            try downloaded.write(to: src.appendingPathComponent("minimapmarkers.bin"))
             for marker in ["minimapmarkers.bin", "privateminimapmarkers.bin", "future-format.bin"] {
-                try Data([0,255,42]).write(to: dst.appendingPathComponent(marker))
+                try markerData.write(to: dst.appendingPathComponent(marker))
             }
             try Data("local exploration".utf8).write(to: dst.appendingPathComponent("Minimap_Color_1_1_7.png"))
             try Data("old".utf8).write(to: dst.appendingPathComponent(name))
             let result = try MapEngine.install(source: src, destination: dst, backups: backups)
             #expect(result.updated == 1)
-            #expect(result.preserved == 3)
+            #expect(result.preserved == 2)
             #expect(try Data(contentsOf: dst.appendingPathComponent(name)) == tile)
-            for marker in ["minimapmarkers.bin", "privateminimapmarkers.bin", "future-format.bin"] {
-                #expect(try Data(contentsOf: dst.appendingPathComponent(marker)) == Data([0,255,42]))
+            #expect(try Data(contentsOf: dst.appendingPathComponent("minimapmarkers.bin")) == markerData + downloaded)
+            for marker in ["privateminimapmarkers.bin", "future-format.bin"] {
+                #expect(try Data(contentsOf: dst.appendingPathComponent(marker)) == markerData)
             }
             #expect(try Data(contentsOf: result.backup!.appendingPathComponent(name)) == Data("old".utf8))
             #expect(try Data(contentsOf: dst.appendingPathComponent("Minimap_Color_1_1_7.png")) == Data("local exploration".utf8))
@@ -63,7 +67,7 @@ struct TibiaMapaTests {
     @Test func importsMarkersOnlyWhenAbsent() throws {
         try fixture { src, dst, backups in
             try tile.write(to: src.appendingPathComponent(name))
-            let markers = Data([10, 0])
+            let markers = markerData
             try markers.write(to: src.appendingPathComponent("minimapmarkers.bin"))
             _ = try MapEngine.install(source: src, destination: dst, backups: backups)
             #expect(try Data(contentsOf: dst.appendingPathComponent("minimapmarkers.bin")) == markers)
@@ -149,7 +153,10 @@ struct TibiaMapaTests {
                 let result = try MapEngine.install(source: extracted.appendingPathComponent("minimap"), destination: dst, backups: backups)
                 #expect(result.updated > 1000)
                 for marker in ["minimapmarkers.bin", "privateminimapmarkers.bin"] {
-                    #expect(FileManager.default.contentsEqual(atPath: input.appendingPathComponent(marker).path, andPath: dst.appendingPathComponent(marker).path))
+                    let original = try Data(contentsOf: input.appendingPathComponent(marker))
+                    let updated = try Data(contentsOf: dst.appendingPathComponent(marker))
+                    #expect(updated.starts(with: original))
+                    if marker == "privateminimapmarkers.bin" { #expect(updated == original) }
                 }
             }
         }
@@ -340,6 +347,57 @@ struct TibiaMapaTests {
     @Test func floorLabelsAreRelativeToSurface() {
         let expected = ["+7", "+6", "+5", "+4", "+3", "+2", "+1", "0", "-1", "-2", "-3", "-4", "-5", "-6", "-7", "-8"]
         #expect((0...15).map { MapFloor.label(for: $0) } == expected)
+    }
+
+    @Test func mergesPackageMarkersWithoutRewritingPersonalRecords() throws {
+        let existing = markerData + Data([40, 42]) // Unknown top-level field must survive.
+        var poi = markerData
+        poi[5] = 5
+        var personal = markerData
+        personal[5] = 9
+        let incoming = markerData + poi + poi + personal
+        let merged = try MarkerMerger.merge(existing: existing, privateMarkers: personal, incoming: incoming)
+        #expect(merged == existing + poi)
+        #expect(try MarkerMerger.merge(existing: merged, privateMarkers: personal, incoming: incoming) == merged)
+        #expect(throws: MapFailure.self) {
+            try MarkerMerger.merge(existing: existing, privateMarkers: personal, incoming: incoming.dropLast())
+        }
+        #expect(throws: MapFailure.self) {
+            try MarkerMerger.merge(existing: Data([0, 255]), privateMarkers: personal, incoming: incoming)
+        }
+    }
+
+    @Test func switchingPackagesRemovesOnlyUneditedImportedMarkers() throws {
+        var normal = markerData; normal[5] = 5
+        var poi = markerData; poi[5] = 8
+        let local = markerData + Data([45, 1, 2, 3, 4]) // Unknown fixed32 field.
+        let first = try MarkerMerger.reconcile(existing: local, privateMarkers: Data(), incoming: poi)
+        #expect(first.data == local + poi)
+        let second = try MarkerMerger.reconcile(existing: first.data, privateMarkers: Data(), incoming: normal, previous: first.manifest)
+        #expect(second.data == local + normal)
+        let noMarkers = try MarkerMerger.reconcile(existing: second.data, privateMarkers: Data(), incoming: Data(), previous: second.manifest)
+        #expect(noMarkers.data == local)
+        var edited = poi; edited[14] = 66
+        let keepEdited = try MarkerMerger.reconcile(existing: local + edited, privateMarkers: Data(), incoming: normal, previous: first.manifest)
+        #expect(keepEdited.data == local + edited + normal)
+        let untracked = try MarkerMerger.reconcile(existing: local + poi, privateMarkers: Data(), incoming: normal)
+        #expect(untracked.data == local + poi + normal)
+    }
+
+    @Test func installationTracksPackageChangesAndPreservesPrivateFile() throws {
+        try fixture { src, dst, backups in
+            try tile.write(to: src.appendingPathComponent(name))
+            try markerData.write(to: dst.appendingPathComponent("privateminimapmarkers.bin"))
+            var poi = markerData; poi[5] = 8
+            try poi.write(to: src.appendingPathComponent("minimapmarkers.bin"))
+            _ = try MapEngine.install(source: src, destination: dst, backups: backups)
+            #expect(try Data(contentsOf: dst.appendingPathComponent("minimapmarkers.bin")) == poi)
+            var normal = markerData; normal[5] = 5
+            try normal.write(to: src.appendingPathComponent("minimapmarkers.bin"))
+            _ = try MapEngine.install(source: src, destination: dst, backups: backups)
+            #expect(try Data(contentsOf: dst.appendingPathComponent("minimapmarkers.bin")) == normal)
+            #expect(try Data(contentsOf: dst.appendingPathComponent("privateminimapmarkers.bin")) == markerData)
+        }
     }
 
 }

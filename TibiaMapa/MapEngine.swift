@@ -12,6 +12,7 @@ struct MapFailure: LocalizedError {
 /// Updates map tiles; marker preservation and backups are enabled by default.
 enum MapEngine {
     static let fm = FileManager.default
+    static let markerManifestName = ".tibiamapa-managed-markers.json"
     static var defaultDestination: URL {
         // Suggested location for the system folder picker; never an access grant.
         let home = getpwuid(getuid()).map { String(cString: $0.pointee.pw_dir) } ?? NSHomeDirectory()
@@ -102,8 +103,32 @@ enum MapEngine {
         }
         let incomingMarkers = source.appendingPathComponent("minimapmarkers.bin")
         let existingMarkers = stage.appendingPathComponent("minimapmarkers.bin")
-        if fm.fileExists(atPath: incomingMarkers.path), !fm.fileExists(atPath: existingMarkers.path) {
-            try fm.copyItem(at: incomingMarkers, to: existingMarkers)
+        let manifestURL = stage.appendingPathComponent(markerManifestName)
+        let incoming = fm.fileExists(atPath: incomingMarkers.path) ? try Data(contentsOf: incomingMarkers) : Data()
+        var previous: MarkerMerger.Manifest?
+        if preserveMarkers, fm.fileExists(atPath: manifestURL.path) {
+            do {
+                let data = try Data(contentsOf: manifestURL)
+                guard data.count <= 30 * 1024 * 1024 else { throw MapFailure("Registro de marcações importadas inválido.") }
+                previous = try JSONDecoder().decode(MarkerMerger.Manifest.self, from: data)
+            } catch {
+                throw MapFailure("Registro de marcações importadas inválido.")
+            }
+        }
+        if preserveMarkers, (!incoming.isEmpty || previous != nil) {
+            let privateMarkers = stage.appendingPathComponent("privateminimapmarkers.bin")
+            let local = fm.fileExists(atPath: existingMarkers.path) ? try Data(contentsOf: existingMarkers) : Data()
+            let personal = fm.fileExists(atPath: privateMarkers.path) ? try Data(contentsOf: privateMarkers) : Data()
+            let result = try MarkerMerger.reconcile(existing: local, privateMarkers: personal, incoming: incoming, previous: previous)
+            try result.data.write(to: existingMarkers)
+            try JSONEncoder().encode(result.manifest).write(to: manifestURL)
+        } else if !preserveMarkers {
+            if fm.fileExists(atPath: incomingMarkers.path) {
+                _ = try MarkerReader.read(incoming, source: "Normal")
+                try incoming.write(to: existingMarkers)
+            }
+            let records = try MarkerReader.fields(incoming).filter { $0.number == 1 }.map(\.encoded)
+            try JSONEncoder().encode(MarkerMerger.Manifest(records: records)).write(to: manifestURL)
         }
         // Check for concurrent client writes before the atomic directory exchange.
         guard try snapshot(destination) == fingerprints else {
@@ -113,7 +138,12 @@ enum MapEngine {
         guard renamex_np(stage.path, destination.path, UInt32(RENAME_SWAP)) == 0 else {
             throw MapFailure(L.format("Não foi possível concluir a troca de mapas: %@. Os mapas originais foram mantidos.", String(cString: strerror(errno))))
         }
-        return Result(updated: tiles.count, preserved: original.filter { !isTile($0.lastPathComponent) && (preserveMarkers || !["minimapmarkers.bin", "privateminimapmarkers.bin"].contains($0.lastPathComponent)) }.count, backup: makeBackup ? backup : nil)
+        let preserved = original.filter {
+            let name = $0.lastPathComponent
+            return !isTile(name) && name != markerManifestName && name != "minimapmarkers.bin" &&
+                (preserveMarkers || name != "privateminimapmarkers.bin")
+        }.count
+        return Result(updated: tiles.count, preserved: preserved, backup: makeBackup ? backup : nil)
     }
     static func snapshot(_ directory: URL) throws -> [String: Data] {
         try Dictionary(uniqueKeysWithValues: regularFiles(directory).map {
