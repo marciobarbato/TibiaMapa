@@ -48,4 +48,8 @@ Scripts in `Scripts/` prepare Developer ID and Mac App Store builds. Signing and
 - **ZIPFoundation:** MIT License, © Thomas Zoechling.
 - **TibiaMapa:** developed by Marcio Barbato.
 
-The TibiaMapa source is public for inspection. No license to reuse its original code has been granted at this time. Third-party licenses and rights in graphical elements are separate. Publishing this repository does not grant rights to Tibia, its symbols, or its trademarks.
+## License
+
+TibiaMapa's original source code is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE). You may use, study, modify and share it for noncommercial purposes only; selling the software or using it commercially is not permitted. This is a source-available license, not an OSI-approved open source license.
+
+Third-party licenses (TibiaMaps.io map data and ZIPFoundation, both under the MIT License) and rights in graphical elements are separate and are not changed by this license. Nothing in this repository grants rights to Tibia, its symbols, or its trademarks.
